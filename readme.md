@@ -21,7 +21,7 @@ The API includes interactive documentation using Swagger UI.
     ],
 
   ```
-  
+
   in other to has access the swagger ui documentation without getting a cors error.
 
 - **Features**:
@@ -78,10 +78,12 @@ Each note contains:
    ```
 
 3. Create a `.env` file in the root directory with the following variables:
+
    ```
-   PORT=5000
+   PORT=5001
    MONGO_URI=mongodb://localhost:27017/note-taking-app
    ```
+
    _Note: Update the MONGO_URI as needed for your environment_
 
 ## Running the Application
@@ -92,7 +94,7 @@ Each note contains:
 npm run dev
 ```
 
-The application will be available at `http://localhost:5000` (or the PORT you specified in .env).
+The application will be available at `http://localhost:5001` (or the PORT you specified in .env).
 
 ## API Usage Examples
 
