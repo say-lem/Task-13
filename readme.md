@@ -1,20 +1,8 @@
 # Note-Taking API
 
-A RESTful API for a simple note-taking application built with Node.js, Express, TypeScript, and MongoDB.
-
 ## Overview
 
 This API provides core functionality for managing notes including creating, retrieving, and deleting notes. Each note consists of a title, content, and automatically tracked timestamps.
-
-## Features
-
-- **TypeScript Implementation**: Fully typed application with interfaces and type-safety
-- **MongoDB Integration**: Persistent storage using Mongoose ODM
-- **RESTful API Design**: Clean, consistent endpoint structure
-- **Error Handling**: Custom error classes with appropriate HTTP status codes
-- **API Documentation**: Interactive Swagger UI documentation
-- **Input Validation**: Data validation for creating and updating notes
-- **Scalable Architecture**: Organized codebase with separation of concerns
 
 ## API Documentation
 
@@ -27,12 +15,13 @@ The API includes interactive documentation using Swagger UI.
   ```javascript
     servers: [
       {
-        url: 'http://localhost:5000/api-docs' or 'http://localhost:Port/api-docs',
+        url: 'http://localhost:5000',
         description: 'Development server'
       }
     ],
-  <!-- if you have spacified the port on .env , ensure to change the port 5000 to that of the env. -->
+
   ```
+
   in other to has access the swagger ui documentation without getting a cors error.
 
 - **Features**:
@@ -78,7 +67,7 @@ Each note contains:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/DanielNwolu/Note-Taking-Api.git
+   git clone https://github.com/yourusername/note-taking-api.git
    cd note-taking-api
    ```
 
@@ -89,10 +78,12 @@ Each note contains:
    ```
 
 3. Create a `.env` file in the root directory with the following variables:
+
    ```
-   PORT=5000
+   PORT=5001
    MONGO_URI=mongodb://localhost:27017/note-taking-app
    ```
+
    _Note: Update the MONGO_URI as needed for your environment_
 
 ## Running the Application
@@ -102,16 +93,8 @@ Each note contains:
 ```bash
 npm run dev
 ```
-### Production Mode
 
-```bash
-npm run build
-
-npm start
-
-```
-
-The application will be available at `http://localhost:5000` (or the PORT you specified in .env).
+The application will be available at `http://localhost:5001` (or the PORT you specified in .env).
 
 ## API Usage Examples
 
@@ -224,34 +207,3 @@ Example error response:
   "message": "Note with ID 60d21b4667d0d8992e610c99 not found"
 }
 ```
-
-## Project Structure
-
-```
-note-api/
-├── src/
-│   ├── config/
-│   │   ├── db.ts              // Database connection logic
-│   │   └── swagger.ts         // Swagger configuration
-│   ├── controllers/
-│   │   └── noteController.ts  // Route handler functions
-│   ├── interfaces/
-│   │   └── noteInterface.ts   // TypeScript interfaces
-│   ├── middleware/
-│   │   └── errorMiddleware.ts // Error handling middleware
-│   ├── models/
-│   │   └── noteModel.ts       // Mongoose schema and model
-│   ├── routes/
-│   │   └── noteRoutes.ts      // API route definitions
-│   ├── utils/
-│   │   └── errorClasses.ts    // Custom error classes
-│   ├── app.ts                 // Express app setup
-│   └── server.ts              // Server entry point
-├── .env                       // Environment variables
-├── tsconfig.json              // TypeScript configuration
-└── package.json               // Project dependencies
-```
-
-## License
-
-This project is licensed under the MIT License.
