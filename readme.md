@@ -224,34 +224,3 @@ Example error response:
   "message": "Note with ID 60d21b4667d0d8992e610c99 not found"
 }
 ```
-
-## Project Structure
-
-```
-note-api/
-├── src/
-│   ├── config/
-│   │   ├── db.ts              // Database connection logic
-│   │   └── swagger.ts         // Swagger configuration
-│   ├── controllers/
-│   │   └── noteController.ts  // Route handler functions
-│   ├── interfaces/
-│   │   └── noteInterface.ts   // TypeScript interfaces
-│   ├── middleware/
-│   │   └── errorMiddleware.ts // Error handling middleware
-│   ├── models/
-│   │   └── noteModel.ts       // Mongoose schema and model
-│   ├── routes/
-│   │   └── noteRoutes.ts      // API route definitions
-│   ├── utils/
-│   │   └── errorClasses.ts    // Custom error classes
-│   ├── app.ts                 // Express app setup
-│   └── server.ts              // Server entry point
-├── .env                       // Environment variables
-├── tsconfig.json              // TypeScript configuration
-└── package.json               // Project dependencies
-```
-
-## License
-
-This project is licensed under the MIT License.
