@@ -1,31 +1,40 @@
-import mongoose, { Schema } from 'mongoose';
-import { INote } from '../interfaces/noteInterface';
+import mongoose, { Schema, Document } from "mongoose";
 
-const noteSchema = new Schema<INote>(
+interface INote extends Document {
+  title: string;
+  content: string;
+  user: mongoose.Schema.Types.ObjectId;
+  category: mongoose.Schema.Types.ObjectId; 
+}
+
+const NoteSchema = new Schema<INote>(
   {
     title: {
       type: String,
-      required: [true, 'Title is required'],
+      required: true,
       trim: true,
-      maxlength: [100, 'Title cannot be more than 100 characters']
+      maxlength: [100, "Title cannot be more than 100 characters"],
     },
     content: {
       type: String,
-      required: [true, 'Content is required'],
-      trim: true
+      required: true,
+      trim: true,
+    },
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
     },
     category: {
-      type: Schema.Types.ObjectId,
-      ref: 'Category',
-      default: null
-    }
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Category",
+      required: true,
+    },
   },
   {
     timestamps: true,
-    versionKey: false
+    versionKey: false,
   }
 );
 
-const Note = mongoose.model<INote>('Note', noteSchema);
-
-export default Note;
+export default mongoose.model<INote>("Note", NoteSchema);

@@ -1,4 +1,3 @@
-// File: src/app.ts (update to include Swagger UI)
 import express, { Application, Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
@@ -7,6 +6,7 @@ import swaggerUi from 'swagger-ui-express';
 import swaggerSpecs from './config/swagger';
 import noteRoutes from './routes/noteRoutes';
 import categoryRoutes from './routes/categoryRoutes';
+import authRoutes from './routes/authRoutes';
 import { errorHandler } from './middleware/errorMiddleware';
 import { requestLogger } from './middleware/loggingMiddleware';
 import { NotFoundError } from './utils/errorClasses';
@@ -30,6 +30,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpecs, {
 }));
 
 // API routes
+app.use('/api/auth', authRoutes);
 app.use('/api/notes', noteRoutes);
 app.use('/api/categories', categoryRoutes);
 
