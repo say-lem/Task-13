@@ -8,7 +8,6 @@ This API provides core functionality for managing notes including creating, retr
 
 The API includes interactive documentation using Swagger UI.
 
-- **Access URL**: `https://note-taking-api-hzp3.onrender.com/api-docs`
   **_Note_** that if you are running the app on your localhost, update the swagger.ts file in the config folder
   with:
 
