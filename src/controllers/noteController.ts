@@ -4,6 +4,7 @@ import Category from '../models/categoryModel';
 import { NotFoundError, BadRequestError } from '../utils/errorClasses';
 import { CreateNoteRequest, UpdateNoteRequest } from '../interfaces/noteInterface';
 import { AuthRequest } from "../middleware/authMiddleware";
+import { isCreateNoteRequest, isUpdateNoteRequest } from '../utils/typeGuards';
 
 // Get all notes for the logged-in user
 export const getAllNotes = async (req: AuthRequest, res: Response, next: NextFunction) => {
@@ -37,8 +38,11 @@ export const getNoteById = async (req: AuthRequest, res: Response, next: NextFun
 // Create a new note and assign it to the logged-in user
 export const createNote = async (req: AuthRequest, res: Response, next: NextFunction) => {
   try {
+    if (!isCreateNoteRequest(req.body)) {
+      throw new BadRequestError('Invalid request body');
+    }
+
     const { title, content, categoryId } = req.body;
-    if (!title || !content) throw new BadRequestError('Title and content are required');
 
     if (categoryId) {
       const categoryExists = await Category.exists({ _id: categoryId });
@@ -57,9 +61,12 @@ export const createNote = async (req: AuthRequest, res: Response, next: NextFunc
 // Update a note but only if it belongs to the user
 export const updateNote = async (req: AuthRequest, res: Response, next: NextFunction) => {
   try {
+    if (!isUpdateNoteRequest(req.body)) {
+      throw new BadRequestError('Invalid request body');
+    }
+
     const { title, content, categoryId } = req.body;
 
-    // Check if note exists and belongs to user
     const note = await Note.findOne({ _id: req.params.id, user: req.user?.userId });
     if (!note) throw new NotFoundError(`Note with ID ${req.params.id} not found or unauthorized`);
 
